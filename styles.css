@@ -3,10 +3,9 @@
 :root {
     --calculator-bg: rgb(25, 25, 25);
     --calculator-screen-bg: rgb(20,20,20);
-    --calculator-keyboard-num-bg: rgb(35,35,35);
-    --calculator-keyboard-num-bg-hover: rgb(45,45,45);
-    --calculator-keyboard-num-bg-active: rgb(40,40,40);
-    
+    --calculator-keyboard-num-bg: rgb(62, 61, 73);
+    --calculator-keyboard-num-bg-hover: rgb(72, 71, 83);
+    --calculator-keyboard-num-bg-active: rgb(67, 66, 78);
     --calculator-keyboard-other-key-bg: rgb(41, 42, 48);
     --calculator-keyboard-other-key-bg-hover: rgb(51, 52, 58);
     --calculator-keyboard-other-key-bg-active: rgb(46, 47, 53);
@@ -127,4 +126,12 @@ main {
 
 .main-calculator-keyboard-number-button:active {
     background-color: var(--calculator-keyboard-num-bg-active);
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 450px) {
+    .main-calculator {
+        width: calc(100% - 30px);
+    }
 }

@@ -178,3 +178,29 @@ function addingDot() {
 dotKey.addEventListener('click', addingDot);
 calculateKey.addEventListener('click', calculateTheInputs);
 deleteKey.addEventListener('click', deletingACharacter);
+
+// HANDLE KEYS
+document.addEventListener('keydown', e => {
+    // NUMBERS
+    const numbers = '0123456789';
+    if (numbers.includes(e.key)) {
+        handleNumbers(Number(e.key));
+    };
+    // OPERATORS
+    const operators = '/*-+';
+    if (operators.includes(e.key)) {
+        selectingAndOperator(e.key);
+    };
+    // CALCULATE
+    if (e.key === 'Enter') {
+        calculateTheInputs();
+    };
+    // DELETE
+    if (e.key === 'Backspace') {
+        deletingACharacter();
+    };
+    // DOT
+    if (e.key === '.') {
+        addingDot();
+    };
+});
