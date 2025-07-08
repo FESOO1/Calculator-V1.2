@@ -19,7 +19,22 @@
 }
 
 body {
-    background-color: rgb(18,18,18);
+    background-color: rgb(10,10,10);
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(./assets/desktop-bg.svg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    opacity: 0.01;
 }
 
 /* MAIN */
@@ -131,6 +146,9 @@ main {
 /* MEDIA QUERIES */
 
 @media (max-width: 450px) {
+    body::before {
+        background: url(./assets/mobile-bg.svg);
+    }
     .main-calculator {
         width: calc(100% - 30px);
     }

@@ -1,3 +1,5 @@
+// TODO: minimumsignificantFraction it should show 0.0 or is showing 0
+
 // SCREEN
 const screenHeader = document.querySelector('.main-calculator-screen-header');
 const screenPar = document.querySelector('.main-calculator-screen-par');
@@ -182,13 +184,26 @@ function addingDot() {
     };
 };
 
+// RESETTING THE CALCULATOR
+
+function resettingTheCalculator() {
+    resettingTheCalObject();
+    screenHeader.textContent = '0';
+    screenPar.textContent = '';
+};
+
 // INITIALIZING BUTTONS
+resetKey.addEventListener('click', resettingTheCalculator);
 dotKey.addEventListener('click', addingDot);
 calculateKey.addEventListener('click', calculateTheInputs);
 deleteKey.addEventListener('click', deletingACharacter);
 
 // HANDLE KEYS
 document.addEventListener('keydown', e => {
+    const buttons = document.querySelectorAll('button');
+    for (const button of buttons) {
+        button.blur();
+    };
     // NUMBERS
     const numbers = '0123456789';
     if (numbers.includes(e.key)) {
