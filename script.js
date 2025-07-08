@@ -63,9 +63,8 @@ function handleNumbers(e) {
 // HANDLE SCREEN HEADER AND PAR
 
 function handleScreenHeader(value) {
-    const formatNumber = new Intl.NumberFormat('en-US', { style: 'decimal', maximumFractionDigits: 21});
+    const formatNumber = new Intl.NumberFormat('en-US', { style: 'decimal' });
     screenHeader.textContent = formatNumber.format(value);
-    console.log(formatNumber.format(value));
 };
 
 function formatNumber(value) {
