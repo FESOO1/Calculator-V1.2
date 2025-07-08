@@ -81,6 +81,10 @@ for (let i = 0; i < operatorKeys.length; i++) {
 };
 
 function selectingAndOperator(e) {
+    // REMOVING THE DOT IF THE LAST ELEMENT IS DOT
+    if (calObj.input.firstInput.firstInputArr.at(-1) === '.') {
+        calObj.input.firstInput.firstInputArr.pop();
+    };
     calObj.operator.selectedOperator = e;
     calObj.operator.isOperatorSelected = true;
     const firstInputString = calObj.input.firstInput.firstInputArr.join('');
@@ -119,6 +123,10 @@ function deletingACharacter() {
 
 function calculateTheInputs() {
     if (calObj.operator.isOperatorSelected) {
+        // REMOVING THE DOT IF THE LAST ELEMENT IS DOT
+        if (calObj.input.secondInput.secondInputArr.at(-1) === '.') {
+            calObj.input.secondInput.secondInputArr.pop();
+        };
         const firstInput = Number(calObj.input.firstInput.firstInputArr.join(''));
         const secondInput = Number(calObj.input.secondInput.secondInputArr.join(''));
         let output;
@@ -167,7 +175,7 @@ function addingDot() {
         const firstInputString = calObj.input.firstInput.firstInputArr.join('');
         screenHeader.textContent = `${formatNumber(firstInputString)}.`;
     } else if (calObj.operator.isOperatorSelected && !calObj.input.secondInput.secondInputArr.includes('.')) {
-        calObj.input.firstInput.isSecondInputEnteredValue = true;
+        calObj.input.secondInput.isSecondInputEnteredValue = true;
         calObj.input.secondInput.secondInputArr.push('.');
         const secondInputString = calObj.input.secondInput.secondInputArr.join('');
         screenHeader.textContent = `${formatNumber(secondInputString)}.`;
