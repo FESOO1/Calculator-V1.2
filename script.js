@@ -38,6 +38,8 @@ for (let i = 0; i < numberKeys.length; i++) {
 
 function handleNumbers(e) {
     if (!calObj.operator.isOperatorSelected && calObj.input.firstInput.firstInputArr.length < 16) {
+        // CLEANING THE SCREEN PAR TEXT
+        screenPar.textContent = '';
         if (!calObj.input.firstInput.isFirstInputEnteredValue) {
             calObj.input.firstInput.firstInputArr = [];
             calObj.input.firstInput.isFirstInputEnteredValue = true;
@@ -61,8 +63,9 @@ function handleNumbers(e) {
 // HANDLE SCREEN HEADER AND PAR
 
 function handleScreenHeader(value) {
-    const formatNumber = new Intl.NumberFormat('en-US', { style: 'decimal' });
+    const formatNumber = new Intl.NumberFormat('en-US', { style: 'decimal', maximumFractionDigits: 21});
     screenHeader.textContent = formatNumber.format(value);
+    console.log(formatNumber.format(value));
 };
 
 function formatNumber(value) {
@@ -89,6 +92,8 @@ function selectingAndOperator(e) {
 
 function deletingACharacter() {
     if (!calObj.operator.isOperatorSelected) {
+        // CLEANING THE SCREEN PAR TEXT
+        screenPar.textContent = '';
         if (calObj.input.firstInput.firstInputArr.length > 0) {
             calObj.input.firstInput.firstInputArr.pop();
         } else {
@@ -139,9 +144,38 @@ function calculateTheInputs() {
         handleScreenHeader(output);
 
         // RESETTING THE CAL OBJECT
+        resettingTheCalObject();
+    };
+};
+
+// RESETTING THE CAL OBJECT
+
+function resettingTheCalObject() {
+    calObj.input.firstInput.isFirstInputEnteredValue = false;
+    calObj.input.firstInput.firstInputArr = [0];
+    calObj.input.secondInput.isSecondInputEnteredValue = false;
+    calObj.input.secondInput.secondInputArr = [0];
+    calObj.operator.isOperatorSelected = false;
+    calObj.operator.selectedOperator = undefined;
+};
+
+// ADDING DOT
+
+function addingDot() {
+    if (!calObj.operator.isOperatorSelected && !calObj.input.firstInput.firstInputArr.includes('.')) {
+        calObj.input.firstInput.isFirstInputEnteredValue = true;
+        calObj.input.firstInput.firstInputArr.push('.');
+        const firstInputString = calObj.input.firstInput.firstInputArr.join('');
+        screenHeader.textContent = `${formatNumber(firstInputString)}.`;
+    } else if (calObj.operator.isOperatorSelected && !calObj.input.secondInput.secondInputArr.includes('.')) {
+        calObj.input.firstInput.isSecondInputEnteredValue = true;
+        calObj.input.secondInput.secondInputArr.push('.');
+        const secondInputString = calObj.input.secondInput.secondInputArr.join('');
+        screenHeader.textContent = `${formatNumber(secondInputString)}.`;
     };
 };
 
 // INITIALIZING BUTTONS
+dotKey.addEventListener('click', addingDot);
 calculateKey.addEventListener('click', calculateTheInputs);
 deleteKey.addEventListener('click', deletingACharacter);
