@@ -40,7 +40,7 @@ main {
 */
 
 .main-calculator {
-    width: 400px;
+    width: 450px;
     background-color: var(--calculator-bg);
     padding: 10px;
     border: 1px solid rgba(255,255,255,0.1);
@@ -53,17 +53,31 @@ main {
 
 .main-calculator-screen {
     border: 1px solid rgba(255,255,255,0.15);
-    height: 50px;
-    padding-inline: 10px;
+    height: 60px;
+    padding-inline: 15px;
     display: grid;
     align-items: center;
     background-color: var(--calculator-screen-bg);
+    position: relative;
+    overflow: auto;
+}
+
+.main-calculator-screen::-webkit-scrollbar {
+    display: none;
 }
 
 .main-calculator-screen-header {
     color: white;
     font-weight: 400;
     text-align: right;
+}
+
+.main-calculator-screen-par {
+    position: absolute;
+    bottom: 2px;
+    right: 4px;
+    color: white;
+    font-size: 0.5rem;
 }
 
 /* MAIN CALCULATOR KEYBOARD */
